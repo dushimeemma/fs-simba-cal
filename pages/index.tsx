@@ -11,7 +11,16 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <p>Cal.com | Genesis Mission</p>
+      <div className='flex flex-row items-center justify-center'>
+        <a href='/auth/register' className='mx-2'>
+          Signup
+        </a>
+        |
+        <a href='/auth/login' className='mx-2'>
+          Login
+        </a>
+        To Genesis Mission
+      </div>
     </div>
   );
 };

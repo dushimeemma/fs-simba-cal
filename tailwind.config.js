@@ -16,6 +16,7 @@ module.exports = {
       },
       colors: {
         primary: '#2F2D2D',
+        secondary: '#F8F8F8',
       },
       fontSize: {
         xs: ['0.813rem', { letterSpacing: '-0.006rem', lineHeight: '1.25rem' }],
