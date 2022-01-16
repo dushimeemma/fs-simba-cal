@@ -1,6 +1,7 @@
 import React from 'react';
 
 const TextField = ({
+  placeholder,
   label,
   type,
   name,
@@ -27,6 +28,7 @@ const TextField = ({
         )}
       </div>
       <input
+        placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
         value={value}
@@ -39,6 +41,7 @@ const TextField = ({
 };
 
 interface Props {
+  placeholder?: string;
   label: string;
   type: string;
   name: string;
