@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import moment from 'moment';
 import CloseSharpIcon from '@mui/icons-material/CloseSharp';
 import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
@@ -7,6 +8,8 @@ import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
 import Sidebar from '../components/shared/Sidebar';
 
 const Bookings = () => {
+  const [isAuth, setIsAuth] = useState(false);
+  const router = useRouter();
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [newTime, setNewTime] = useState('');
@@ -17,29 +20,22 @@ const Bookings = () => {
       dateData !== null ? moment(dateData).format('MMM Do YYYY') : '';
     const timeData = localStorage.getItem('time');
     const newTime = timeData !== null ? timeData : '';
-    const time = timeStringToFloat(newTime);
-    const exactTime = secondsToHms(time);
     setDate(`${day}, ${date}`);
-    setTime(`${time}`);
-    setNewTime(`${exactTime}`);
+    setTime(`${newTime.split(' ')[0]}`);
+    setNewTime(
+      `${newTime.split(':')[0]}:${
+        Number(newTime.split(':')[1].split(' ')[0]) + 15
+      }`
+    );
   });
-  const timeStringToFloat = (time: string) => {
-    let hoursMinutes = time.split(':');
-    let hours = parseInt(hoursMinutes[0], 10);
-    let minutes = hoursMinutes[1].split(' ')[0]
-      ? parseInt(hoursMinutes[1].split(' ')[0], 10)
-      : 0;
-    return hours + minutes / 60;
-  };
-  const secondsToHms = (data: number) => {
-    data = data * 3600;
-    let h = Math.floor(data / 3600);
-    let m = Math.floor((data % 3600) / 60);
+  useEffect(() => {
+    const checkToken = localStorage.getItem('token');
+    if (checkToken === null) {
+      router.push('/auth/login');
+    }
+    setIsAuth(true);
+  }, [isAuth]);
 
-    let hDisplay = h > 0 ? h : '';
-    let mDisplay = m > 0 ? m : '';
-    return `${hDisplay} : ${mDisplay}`;
-  };
   return (
     <div className='flex flex-row items-start justify-between'>
       <Head>

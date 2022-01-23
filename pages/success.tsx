@@ -16,6 +16,7 @@ const Success = () => {
     setDate(`${day}, ${date}`);
     setTime(time);
   });
+
   return (
     <div className='flex items-center justify-center w-screen h-screen bg-secondary'>
       <div className='w-[40%] min-h-[60%] border-2 border-secondary bg-white flex flex-col justify-center items-center py-10'>
