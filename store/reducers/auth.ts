@@ -5,10 +5,7 @@ const initialState: AuthState = {
   isLoading: false,
   isAuth: false,
   token: '',
-  user: {
-    username: '',
-    email: '',
-  },
+  user: null,
   message: '',
 };
 
