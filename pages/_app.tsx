@@ -1,8 +1,17 @@
-import '../styles/globals.css';
+import React, { useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
+import { useRouter } from 'next/router';
+
+import store from '../store/store';
+import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  return <Component {...pageProps} />;
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  );
 };
 
 export default MyApp;
